@@ -17,6 +17,7 @@ const createRoomsTable = async () => {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
+    console.log("Hotels Table Created")
   } catch (error) {
     console.error("Error creating rooms table:", error);
   } finally {

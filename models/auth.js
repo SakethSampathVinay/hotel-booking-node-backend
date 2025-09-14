@@ -14,6 +14,7 @@ const createUser = async () => {
 
     const db = await pool.getConnection();
     await db.query(sql);
+    console.log("User Table Created")
     db.release();
 };
 
