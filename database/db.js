@@ -1,5 +1,6 @@
 import mariadb from "mariadb";
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config();
 
