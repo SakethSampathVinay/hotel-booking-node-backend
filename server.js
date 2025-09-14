@@ -9,6 +9,8 @@ import bookingRouter from "./routes/bookingsRoutes.js";
 import ordersModel from "./models/orders.js";
 import ordersRouter from "./routes/ordersRoutes.js";
 import createOrdersTable from "./models/orders.js";
+import createUser from "./models/auth.js";
+import createRoomsTable from "./models/rooms.js";
 
 const app = express();
 const port = 4000;
@@ -22,8 +24,10 @@ app.use("/", roomsRouter);
 app.use("/", bookingRouter);
 app.use("/api", ordersRouter);
 
+createUser();
 createBookingsTable();
 createOrdersTable();
+createRoomsTable();
 
 connectToDB();
 
