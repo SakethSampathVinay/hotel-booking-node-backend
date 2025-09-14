@@ -5,7 +5,7 @@ import authUser from "../middleware/authUser.js";
 
 const roomsRouter = express.Router();
 
-roomsRouter.post("/add-hotels", upload.array("images", 4), authUser, addHotel);
+roomsRouter.post("/add-hotels", upload.array("images", 4), addHotel);
 roomsRouter.get("/get-rooms", authUser, getHotels);
 
 export default roomsRouter;
