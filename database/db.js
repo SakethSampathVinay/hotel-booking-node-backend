@@ -11,8 +11,8 @@ const pool = mariadb.createPool({
   port: process.env.DB_PORT,
   connectionLimit: 10,
   ssl: {
-    rejectUnauthorized: true,
-  },
+    ca: fs.readFileSync("./certs/ca.pem")
+  }
 });
 
 const connectToDB = async () => {
