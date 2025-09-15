@@ -89,10 +89,12 @@ const cancelBooking = async (req, res) => {
     const bookingId = req.params.booking_id;
     const userId = req.user.id;
 
-    const booking = await db.query(
+    const rows = await db.query(
       `SELECT * FROM bookings WHERE id = ? AND user_id = ? LIMIT 1`,
       [bookingId, userId]
     );
+
+    const booking = rows[0];
 
     if (!booking) {
       return res
@@ -107,7 +109,7 @@ const cancelBooking = async (req, res) => {
     }
 
     await db.query(
-      `UPDATE bookings SET status = "Cancelled" WHERE id = ? AND user_id = ?`,
+      `UPDATE bookings SET status = 'Cancelled' WHERE id = ? AND user_id = ?`,
       [bookingId, userId]
     );
 
@@ -116,9 +118,10 @@ const cancelBooking = async (req, res) => {
       .json({ success: true, message: "Booking Cancelled Successfully" });
   } catch (error) {
     console.log("Error Cancelling the Booking: ", error);
-    return res
-      .status(400)
-      .json({ success: false, message: "Error in Cancelling the Booking" });
+    return res.status(400).json({
+      success: false,
+      message: `Error in Cancelling the Booking ${error}`,
+    });
   } finally {
     db.release();
   }
