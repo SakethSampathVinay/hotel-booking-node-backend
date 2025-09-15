@@ -39,14 +39,12 @@ const signup = async (req, res) => {
     });
 
     db.release();
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "User Created Successfully",
-        token,
-        user: userId,
-      });
+    res.status(200).json({
+      success: true,
+      message: "User Created Successfully",
+      token,
+      user: userId,
+    });
   } catch (error) {
     if (error.code === "ER_DUP_ENTRY") {
       return res.status(409).json({
