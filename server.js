@@ -11,6 +11,8 @@ import ordersRouter from "./routes/ordersRoutes.js";
 import createOrdersTable from "./models/orders.js";
 import createUser from "./models/auth.js";
 import createRoomsTable from "./models/rooms.js";
+import createFeedbackTable from "./models/feedback.js";
+import feedbackRouter from "./routes/feedbackRoutes.js";
 
 const app = express();
 const port = 4000;
@@ -23,11 +25,13 @@ app.use("/auth", authRouter);
 app.use("/", roomsRouter);
 app.use("/", bookingRouter);
 app.use("/api", ordersRouter);
+app.use("/", feedbackRouter);
 
 createUser();
 createBookingsTable();
 createOrdersTable();
 createRoomsTable();
+createFeedbackTable();
 
 connectToDB();
 
